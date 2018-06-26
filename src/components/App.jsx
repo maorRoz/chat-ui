@@ -20,19 +20,22 @@ const Logo = styled.div`
 
 class App extends React.PureComponent {
   render() {
-    return (<div><Container className={'spotim-header'}>
-      <div className={'spotim-title'}>
-        Welcome to the Spot.IM Chat app
-      </div>
-      <div>
-        <Logo>
-          <Image size={'tiny'} src={logo}/>
-        </Logo>
+    return (
+    <Container>
+      <Container className={'spotim-header'}>
+        <div className={'spotim-title'}>
+          Welcome to the Spot.IM Chat app
+        </div>
+        <div>
+          <Logo>
+            <Image size={'tiny'} src={logo}/>
+          </Logo>
 
-      </div>
+        </div>
+      </Container>
+      <MessageListArea socket={this.props.socket}/>
+      <MessageCreationArea socket={this.props.socket}/>
     </Container>
-    <MessageListArea socket={this.props.socket}/>
-    <MessageCreationArea socket={this.props.socket}/></div>
     )
   }
 }

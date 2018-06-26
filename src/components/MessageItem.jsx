@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container,Image,Label,Message} from 'semantic-ui-react'
+import {Container,Label,Item} from 'semantic-ui-react'
 import avatar from '../assets/person.png'
 
 
@@ -9,21 +9,26 @@ class MessageItem extends React.PureComponent {
         this.state = {messageOwner : this.props.senderName}
     }
     render() {
-        let role = "Friend";
+        let role = "Member";
+        let color ="#e6faff";
         if(this.state.messageOwner === this.props.username){
             role = "You";
+            color="#cdcdb1";
         }
       return (
-        <Container>
-            <Label as='a' image>
-            <Image src={avatar} size={'tiny'}></Image>
-            {this.props.username}
+        <Item style={{backgroundColor: color}}>
+        <Item.Image src={avatar} size={'tiny'} />
+        <Item.Content >
+          <Item.Header>
+          <Label>{this.props.username}
             <Label.Detail>{role}</Label.Detail>
             </Label>
-            <Message
-            content='Get the best news in your e-mail every day.'
-            />
-        </Container>
+          </Item.Header>
+          <Item.Description>
+          heh
+          </Item.Description>
+        </Item.Content>
+      </Item>
       )
     }
 }
