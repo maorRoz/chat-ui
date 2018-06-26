@@ -32,9 +32,9 @@ class MessageCreationArea extends React.PureComponent {
     document.getElementById("messageBodyField").value = "";
   }
   render() {
-    return <Container style={{ backgroundColor: '#ddd',height: '80px'}}>
-        <Input  style={{marginTop: '20px',marginRight: '7px'}} type="text" id="userNameField" placeholder="Enter your Name"/>
-        <Input style={{width: '72%' ,marginRight: '7px'}} type="text" id="messageBodyField" placeholder="Say Something!"/>
+    return <Container className={'message-creation-container'}>
+        <Input className={'message-creation-inputUserName'} type="text" id="userNameField" placeholder="Enter your Name"/>
+        <Input className={'message-creation-inputText'} type="text" id="messageBodyField" placeholder="Say Something!"/>
         <Input type="submit" value="Send" id="messageSender"  />
     </Container>
   }

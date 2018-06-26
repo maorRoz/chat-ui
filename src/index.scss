@@ -16,6 +16,33 @@ body {
 
 }
 
+.message-creation-container {
+  background-color: #ddd;
+  padding: 10px;
+  height: 80px;
+  .message-creation-inputUserName {
+    margin-top: 20px;
+    margin-right: 7px;
+  }
+  .message-creation-inputText {
+    width: 72%;
+    margin-right: 7px;
+  }
+}
+
+.message-list-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: white;
+  height: 550px;
+}
+.your-message {
+  background-color: #cdcdb1;
+}
+
+.other-message {
+  background-color: #e6faff;
+}
 
 
 

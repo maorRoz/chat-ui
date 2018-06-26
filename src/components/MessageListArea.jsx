@@ -18,7 +18,7 @@ class MessageListArea extends React.PureComponent {
     }
     render() {
       return (
-        <Item.Group style={{marginTop: '50px' , marginBottom: '50px' ,backgroundColor: "white" ,height: "550px"}}>
+        <Item.Group className={'message-list-container'}>
         {this.state.messages}
       </Item.Group>
       )

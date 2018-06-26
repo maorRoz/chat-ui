@@ -14,10 +14,10 @@ class MessageItem extends React.PureComponent {
     }
     render() {
         let role = "Member";
-        let color ="#e6faff";
+        let color = '#e6faff';
         if(this.props.username === this.props.senderName){
             role = "You";
-            color="#cdcdb1";
+            color= '#cdcdb1';
         }
       return (
         <Item style={{backgroundColor: color}}>
