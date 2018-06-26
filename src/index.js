@@ -4,10 +4,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import App from "./components";
+import App from "./components/App";
 import io from "socket.io-client";
-
-ReactDOM.render(<App />, document.getElementById("root"));
 
 
 //connecting to Socket.IO chat server
@@ -18,3 +16,6 @@ socket.on("connect", function() {
 socket.on("disconnect", function() {
   console.log("disconnected from chat server!");
 });
+
+ReactDOM.render(<App socket={socket} />, document.getElementById("root"));
+

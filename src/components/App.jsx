@@ -5,6 +5,8 @@ import React from 'react'
 import logo from '../assets/spotim-logo.jpg'
 import {Container, Image} from 'semantic-ui-react'
 import styled from 'styled-components';
+import MessageListArea from './MessageListArea'
+import MessageCreationArea from './MessageCreationArea'
 
 const Logo = styled.div`
       img{
@@ -18,7 +20,7 @@ const Logo = styled.div`
 
 class App extends React.PureComponent {
   render() {
-    return <Container className={'spotim-header'}>
+    return (<div><Container className={'spotim-header'}>
       <div className={'spotim-title'}>
         Welcome to the Spot.IM Chat app
       </div>
@@ -29,6 +31,9 @@ class App extends React.PureComponent {
 
       </div>
     </Container>
+    <MessageListArea socket={this.props.socket}/>
+    <MessageCreationArea socket={this.props.socket}/></div>
+    )
   }
 }
 
