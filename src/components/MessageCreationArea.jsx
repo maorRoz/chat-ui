@@ -6,7 +6,7 @@ import {Container,Input} from 'semantic-ui-react'
 class MessageCreationArea extends React.PureComponent {
   constructor(props){
     super(props);
-    this.state = {messageSender: this.sendMessage.bind(this)};
+    this.state = {messageSender: () => this.sendMessage()};
   }
   componentDidMount(){
     document.getElementById("messageSender").addEventListener("click",this.state.messageSender);
@@ -19,7 +19,7 @@ class MessageCreationArea extends React.PureComponent {
   }
   sendMessage(){
     let messageWrapper = {
-      avatar: null,
+      avatar: 123,
       username: document.getElementById("userNameField").value,
       text: document.getElementById("messageBodyField").value
     }

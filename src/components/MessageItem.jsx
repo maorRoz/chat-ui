@@ -7,7 +7,7 @@ class MessageItem extends React.PureComponent {
     constructor(props){
         super(props);
         let avatarSource = avatar;
-        if(this.props.avatar != null){
+        if(typeof this.props.avatar === 'string' && ( this.props.avatar.includes(".png") || this.props.avatar.includes(".jpg"))){
             avatarSource = this.props.avatar;
         }
         this.state = {messageOwner : this.props.senderName, avatar: avatarSource}
