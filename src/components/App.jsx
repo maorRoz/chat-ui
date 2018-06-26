@@ -19,7 +19,17 @@ const Logo = styled.div`
 
 
 class App extends React.PureComponent {
-  render() {
+  constructor(props){
+    super(props);
+    this.state = {senderName : ""}
+  }
+  getUserName = (newSenderName) => {
+    if(newSenderName !== ""){
+      this.setState({senderName: newSenderName});
+    }
+  
+  }
+  render() { 
     return (
     <Container>
       <Container className={'spotim-header'}>
@@ -33,8 +43,8 @@ class App extends React.PureComponent {
 
         </div>
       </Container>
-      <MessageListArea socket={this.props.socket}/>
-      <MessageCreationArea socket={this.props.socket}/>
+      <MessageListArea socket={this.props.socket} senderName={this.state.senderName}/>
+      <MessageCreationArea socket={this.props.socket} updateSenderName={this.getUserName}/>
     </Container>
     )
   }

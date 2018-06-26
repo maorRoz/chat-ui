@@ -10,12 +10,12 @@ class MessageItem extends React.PureComponent {
         if(typeof this.props.avatar === 'string' && ( this.props.avatar.includes(".png") || this.props.avatar.includes(".jpg"))){
             avatarSource = this.props.avatar;
         }
-        this.state = {messageOwner : this.props.senderName, avatar: avatarSource}
+        this.state = {avatar: avatarSource}
     }
     render() {
         let role = "Member";
         let color ="#e6faff";
-        if(this.state.messageOwner === this.props.username){
+        if(this.props.username === this.props.senderName){
             role = "You";
             color="#cdcdb1";
         }

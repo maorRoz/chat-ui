@@ -9,11 +9,10 @@ class MessageListArea extends React.PureComponent {
       }
     
     componentDidMount(){
-        let senderName = 'Morpheus';
         this.props.socket.on("spotim/chat",(messageWrapper)=>{
             console.log(messageWrapper);
             let messageWrapperTag = (<MessageItem username={messageWrapper.username} key={this.state.messages.length+1}
-                 text={messageWrapper.text} avatar={messageWrapper.avatar} senderName={senderName}/>);
+                 text={messageWrapper.text} avatar={messageWrapper.avatar} senderName={this.props.senderName}/>);
             this.setState({messages: [...this.state.messages,messageWrapperTag]});
         });
     }

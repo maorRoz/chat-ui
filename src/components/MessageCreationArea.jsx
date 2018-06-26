@@ -10,6 +10,9 @@ class MessageCreationArea extends React.PureComponent {
   }
   componentDidMount(){
     document.getElementById("messageSender").addEventListener("click",this.state.messageSender);
+    document.getElementById("userNameField").addEventListener("keyup",() => {
+      this.props.updateSenderName(document.getElementById("userNameField").value);
+    })
     document.getElementById("messageBodyField").addEventListener("keyup", function(event) {
       event.preventDefault();
       if (event.keyCode === 13) {
