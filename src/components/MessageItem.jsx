@@ -1,12 +1,16 @@
 import React from 'react'
-import {Container,Label,Item} from 'semantic-ui-react'
+import {Label,Item} from 'semantic-ui-react'
 import avatar from '../assets/person.png'
 
 
 class MessageItem extends React.PureComponent {
     constructor(props){
         super(props);
-        this.state = {messageOwner : this.props.senderName}
+        let avatarSource = avatar;
+        if(this.props.avatar != null){
+            avatarSource = this.props.avatar;
+        }
+        this.state = {messageOwner : this.props.senderName, avatar: avatarSource}
     }
     render() {
         let role = "Member";
@@ -17,7 +21,7 @@ class MessageItem extends React.PureComponent {
         }
       return (
         <Item style={{backgroundColor: color}}>
-        <Item.Image src={avatar} size={'tiny'} />
+        <Item.Image src={this.state.avatar} size={'tiny'} />
         <Item.Content >
           <Item.Header>
           <Label>{this.props.username}
@@ -25,7 +29,7 @@ class MessageItem extends React.PureComponent {
             </Label>
           </Item.Header>
           <Item.Description>
-          heh
+          {this.props.text}
           </Item.Description>
         </Item.Content>
       </Item>
