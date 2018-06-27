@@ -22,13 +22,6 @@ class MessageCreationArea extends React.PureComponent {
 
   makeUpdateSenderName = () => this.props.updateSenderName(this.state.username);
 
-  sendMessageOnEnter(event){
-    event.preventDefault();
-    if (event.keyCode === 13) {
-      this.handleSumbit(event);
-    }
-  }
-
   sendMessage(event){
     event.preventDefault();
     let messageWrapper = {
