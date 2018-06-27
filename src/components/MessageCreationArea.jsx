@@ -4,38 +4,54 @@ import {Container,Input} from 'semantic-ui-react'
 
 
 class MessageCreationArea extends React.PureComponent {
-  
-  makeUpdateSenderName = () => this.props.updateSenderName(document.getElementById("userNameField").value);
+  constructor(props){
+    super(props);
+    this.state = {username: "",messageText: ""}
+    this.handleChangeUserName = event => this.changeUserName(event);
+    this.handleChangeMessageText = event => this.changeMessageText(event);
+    this.handleSumbit = event => this.sendMessage(event);
+  }
 
-  messageSender= () => this.sendMessage();
+
+  changeUserName(event){
+    this.setState({username: event.target.value})
+  }
+
+  changeMessageText(event){
+    this.setState({messageText: event.target.value})
+  }
+
+  makeUpdateSenderName = () => this.props.updateSenderName(this.state.username);
 
   sendMessageOnEnter(event){
     event.preventDefault();
     if (event.keyCode === 13) {
-      document.getElementById("messageSender").click();
+      this.handleSumbit(event);
     }
   }
 
-  sendMessage(){
+  sendMessage(event){
+    event.preventDefault();
     let messageWrapper = {
       avatar: 123,
-      username: document.getElementById("userNameField").value,
-      text: document.getElementById("messageBodyField").value
+      username: this.state.username,
+      text: this.state.messageText
     }
     if(messageWrapper.text.length > 0 && messageWrapper.username.length > 0){
       this.props.socket.emit("spotim/chat",messageWrapper);
     }
-    document.getElementById("messageBodyField").value = "";
+    this.setState({messageText: ""});
   }
   
   render() {
-    console.log(this.makeUpdateSenderName);
     return <Container className={'message-creation-container'}>
+    <form onSubmit={this.handleSumbit}>
         <Input className={'message-creation-inputUserName'} type="text" id="userNameField" placeholder="Enter your Name"
-        onKeyUp={this.makeUpdateSenderName}/>
+        onKeyUp={this.makeUpdateSenderName} value={this.state.username} onChange={this.handleChangeUserName}/>
         <Input className={'message-creation-inputText'} type="text" id="messageBodyField" placeholder="Say Something!"
-         onKeyUp={this.sendMessageOnEnter}/>
-        <Input type="submit" value="Send" id="messageSender" onClick={this.messageSender}  />
+         value={this.state.messageText} onChange={this.handleChangeMessageText}/>
+        <Input type="submit" value="Send" id="messageSender"  />
+        </form>
     </Container>
   }
 }
