@@ -4,22 +4,18 @@ import {Container,Input} from 'semantic-ui-react'
 
 
 class MessageCreationArea extends React.PureComponent {
-  constructor(props){
-    super(props);
-    this.state = {messageSender: () => this.sendMessage()};
+  
+  makeUpdateSenderName = () => this.props.updateSenderName(document.getElementById("userNameField").value);
+
+  messageSender= () => this.sendMessage();
+
+  sendMessageOnEnter(event){
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      document.getElementById("messageSender").click();
+    }
   }
-  componentDidMount(){
-    document.getElementById("messageSender").addEventListener("click",this.state.messageSender);
-    document.getElementById("userNameField").addEventListener("keyup",() => {
-      this.props.updateSenderName(document.getElementById("userNameField").value);
-    })
-    document.getElementById("messageBodyField").addEventListener("keyup", function(event) {
-      event.preventDefault();
-      if (event.keyCode === 13) {
-        document.getElementById("messageSender").click();
-      }
-    });
-  }
+
   sendMessage(){
     let messageWrapper = {
       avatar: 123,
@@ -31,11 +27,15 @@ class MessageCreationArea extends React.PureComponent {
     }
     document.getElementById("messageBodyField").value = "";
   }
+  
   render() {
+    console.log(this.makeUpdateSenderName);
     return <Container className={'message-creation-container'}>
-        <Input className={'message-creation-inputUserName'} type="text" id="userNameField" placeholder="Enter your Name"/>
-        <Input className={'message-creation-inputText'} type="text" id="messageBodyField" placeholder="Say Something!"/>
-        <Input type="submit" value="Send" id="messageSender"  />
+        <Input className={'message-creation-inputUserName'} type="text" id="userNameField" placeholder="Enter your Name"
+        onKeyUp={this.makeUpdateSenderName}/>
+        <Input className={'message-creation-inputText'} type="text" id="messageBodyField" placeholder="Say Something!"
+         onKeyUp={this.sendMessageOnEnter}/>
+        <Input type="submit" value="Send" id="messageSender" onClick={this.messageSender}  />
     </Container>
   }
 }
