@@ -12,7 +12,6 @@ class MessageCreationArea extends React.PureComponent {
     this.handleSumbit = event => this.sendMessage(event);
   }
 
-
   changeUserName(event){
     this.setState({username: event.target.value})
   }
@@ -46,11 +45,11 @@ class MessageCreationArea extends React.PureComponent {
   render() {
     return <Container className={'message-creation-container'}>
     <form onSubmit={this.handleSumbit}>
-        <Input className={'message-creation-inputUserName'} type="text" id="userNameField" placeholder="Enter your Name"
+        <Input className={'message-creation-inputUserName'} type="text" placeholder="Enter your Name"
         onKeyUp={this.makeUpdateSenderName} value={this.state.username} onChange={this.handleChangeUserName}/>
-        <Input className={'message-creation-inputText'} type="text" id="messageBodyField" placeholder="Say Something!"
+        <Input className={'message-creation-inputText'} type="text" placeholder="Say Something!"
          value={this.state.messageText} onChange={this.handleChangeMessageText}/>
-        <Input type="submit" value="Send" id="messageSender"  />
+        <Input type="submit" value="Send"  />
         </form>
     </Container>
   }
